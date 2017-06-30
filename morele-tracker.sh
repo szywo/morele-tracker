@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/sh
 
 ################################################################################
 #                                                                              #
@@ -41,25 +41,14 @@
 #  calling script with anything else as first argument will print basic help   #
 #                                                                              #
 ################################################################################
-#                                                                              #
-#  TODO list:                                                                  #
-#    1. Read urls from separate file.                                          #
-#    2. Not enough already? Ok, I have a whole lot more ideas but don't        #
-#       have time to name them now, could say I have TODO to do.               #
-#     .                                                                        #
-#     .                                                                        #
-#     .                                                                        #
-#  999. rewrite it in php, java or c/c++ to give it even more functionality    #
-#       or make morele.net hire me to write nice WEB API for them (;           #
-#                                                                              #
-################################################################################
+
 
 ################################################################################
 #                                                                              #
 #  log and cache file names                                                    #
 #                                                                              #
 ################################################################################
-cachefile=".curl-cahe"
+cachefile=".curl-cache"
 logfile="price-tracker-log"
 logdir="log"
 
@@ -69,7 +58,7 @@ logdir="log"
 #                                                                              #
 ################################################################################
 path=`echo $0 | sed 's/\/[^\/]*$//'`
-cachepath="$path/$logdir/$cachefile"
+cachepath="$path/$cachefile"
 logpath="$path/$logdir/$logfile"
 
 command=${1}
@@ -95,6 +84,7 @@ parse_morele_page () {
             ;;
         "log")
             echo [ $date ][ $price ][ $avail ][ $name ] >> $logpath
+            echo -n "."
             ;;
     esac
     rm $cachepath
@@ -108,6 +98,12 @@ parse_morele_page () {
 ################################################################################
 case $command in
     "log" | "print" | "")
+        if [ "$command" = "log" ]; then
+            if [ ! -d $logdir ]; then
+                mkdir "$path/$logdir"
+            fi
+            echo -n "Processing"
+        fi
         ################################################################################
         #                                                                              #
         #      !!! PUT HERE MORELE.NET PRODUCTS URLS !!!                               #
@@ -118,13 +114,20 @@ case $command in
         #                                                                              #
         ################################################################################
         # some sample urls (my recent wish fors)
+        parse_morele_page "https://www.morele.net/procesor-serwerowy-intel-xeon-e3-1231v3-3-4-ghz-lga1150-box-bx80646e31231v3-640233/"
         parse_morele_page "https://www.morele.net/procesor-serwerowy-intel-xeon-e3-1241v3-3-5-ghz-lga1150-box-bx80646e31241v3-640234/"
         parse_morele_page "https://www.morele.net/procesor-serwerowy-intel-xeon-e3-1270-v3-8m-cache-3-50-ghz-box-bx80646e31270v3-619018/"
+        parse_morele_page "https://www.morele.net/procesor-serwerowy-intel-xeon-e3-1271-v3-8m-cache-3-60-ghz-bx80646e31271v3-641043/"
+        parse_morele_page "https://www.morele.net/karta-graficzna-evga-geforce-gtx-1060-gaming-acx-2-0-3gb-gddr5-192-bit-hdmi-dvi-3xdp-box-03g-p4-6160-kr-1004503/"
         parse_morele_page "https://www.morele.net/karta-graficzna-evga-geforce-gtx-1060-gaming-6gb-gddr5-192-bit-hdmi-dvi-3x-dp-box-06g-p4-6161-kr-1009506/"
         parse_morele_page "https://www.morele.net/karta-graficzna-evga-geforce-gtx-1060-sc-gaming-6gb-gddr5-192-bit-dvi-d-3xdp-hdmi-box-06g-p4-6163-kr-1049651/"
+        parse_morele_page "https://www.morele.net/karta-graficzna-evga-geforce-gtx-1060-ftw-gaming-6gb-gddr5-192-bit-hdmi-dvi-d-3xdp-box-06g-p4-6268-kr-1114675/"
         parse_morele_page "https://www.morele.net/drukarka-laserowa-hewlett-packard-laserjet-pro-400-m402dne-c5j91a-b19-1053579/"
         parse_morele_page "https://www.morele.net/drukarka-laserowa-hewlett-packard-laserjet-pro-400-m402dn-c5f94a-775009/"
         parse_morele_page "https://www.morele.net/drukarka-laserowa-hewlett-packard-hp-laserjet-pro-m402dw-c5f95a-936791/"
+        if [ "$command" = "log" ]; then
+            echo "done"
+        fi
         ;;
     "replay")
         if [ -e $logpath ]; then
@@ -133,6 +136,8 @@ case $command in
             else
                 cat $logpath
             fi
+        else
+            echo "Error, no log file found: $logpath"
         fi
         ;;
     *)
