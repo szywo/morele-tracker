@@ -1,5 +1,5 @@
 # morele-tracker
-shell script to track prices and availability of morele.net products
+shell script to track prices and availability of morele.net products, intended to use with cron
 
 It works for now, but there is not any guarantee it will in the future,
 as it does not parse DOM tree. It only finds and parse some easily
@@ -13,10 +13,15 @@ find them by product id (morele.net website limitation)
 To include interesting product, you have to find its page on morele.net
 and copy product url to section:
 
-### !!! PUT HERE MORELE.NET PRODUCTS URLS !!!
+`!!! PUT HERE MORELE.NET PRODUCTS URLS !!!`
+
+using format:
+
+`parse_morele_page <morele_product_url>`
 
 ## Basic functionality implemented so far:
 `morele-tracker.sh`
+
 `morele-tracker.sh print`
   - prints current prices and quantities
 
@@ -31,11 +36,11 @@ and copy product url to section:
 calling script with anything else as first argument will print basic help
 
 ## TODO list:
-  1. [ ] Read urls from separate file.
-  2. [ ] Refactor parse_morele_page() to return string and move printing/logging swith outside of function
-  3. [ ] Move timestamp generation to separate function
-  4. [ ] Not enough already? Ok, I have a whole lot more ideas but don't have time to name them now, could say I have TODO to do.
-  * ...
-  * ...
-  * ...
-  777. [ ] rewrite it in php, java or c/c++ to give it even more functionality or make morele.net hire me to write nice WEB API for them (;
+  - [ ] 1. Read urls from separate file.
+  - [ ] 2. Refactor parse_morele_page() to return string and move printing/logging swith outside of the function.
+  - [ ] 3. Move timestamp generation to separate function.
+  - [ ] 4. Not enough already? Ok, I have a whole lot more ideas but don't have time to name them now, could say I have TODO to do.
+  - 
+  - 
+  - 
+  - [ ] 777. Rewrite it in php, java or c/c++ to give it even more functionality or make morele.net hire me to write nice WEB API for them (;
