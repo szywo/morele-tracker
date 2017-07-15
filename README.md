@@ -5,7 +5,7 @@ It works for now, but there is not any guarantee it will in the future, as it do
 
 The script was tested with dash (the Debian Almquist Shell) so it should work with any POSIX shell.
 
-## !!! IMPORTANT !!!
+#### !!! IMPORTANT !!!
 The products' urls are currently included in script code, there is no way to pass them from comand line (will consider it), file (1st TODO) or to find them by product id (morele.net website limitation)
 
 To include interesting product, you have to find its page on morele.net

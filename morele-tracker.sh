@@ -99,7 +99,7 @@ parse_morele_page () {
 case $command in
     "log" | "print" | "")
         if [ "$command" = "log" ]; then
-            if [ ! -d $logdir ]; then
+            if [ ! -d "$path/$logdir" ]; then
                 mkdir "$path/$logdir"
             fi
             echo -n "Processing"
