@@ -1,2 +1,4 @@
 /testcase
 /log
+/backup
+.curl-cache.temp
