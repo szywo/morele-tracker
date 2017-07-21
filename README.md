@@ -17,6 +17,9 @@ The script was tested with dash (the Debian Almquist Shell) so it should work wi
 `morele-tracker.sh [-v] replay [filter]`
   - prints archived prices and quantities, if optional filter string is given, script will print only lines containing this string (eg. to filter interesting product)
 
+Switches:
+  -v   Makes the script more verbose/talkative during the operation. All verbose messages are redirected to stderr.
+
 Calling the script with anything else as first argument or with wrong (non-existent) switch will print basic help.
 
 ### Important files
