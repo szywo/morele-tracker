@@ -167,7 +167,7 @@ parse_page () {
         return 2
     fi
 
-    QTY=$(cat $FILE | grep 'Dostępność: <b>' | sed 's/^Dostępność: <b>\(.*\)\sszt\.\s\?\([^<]*\)<\/b>/\1/')
+    QTY=$(cat $FILE | grep 'Dostępność: <b>' | sed 's/^Dostępność:\s<b>\(.*\)\sszt\.\s\?\([^<]*\)<\/b>/\1/')
     if [ -z "$QTY" ]; then
         QTY=0
     fi
