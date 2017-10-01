@@ -161,13 +161,13 @@ parse_page () {
         return 1
     fi
 
-    NAME=$(cat $FILE | grep -m 1 '<title>' | sed 's/^<title>\(.*\)\sw\sMorele\.net<\/title>/\1/')
-    PRICE=$(cat $FILE | grep 'id="product_price_brutto"' | sed 's/^.*content="\([0-9.]*\)".*/\1/')
+    NAME=`cat $FILE | grep -m 1 '<title>' | sed 's/^<title>\(.*\)\sw\sMorele\.net<\/title>/\1/'`
+    PRICE=`cat $FILE | grep 'id="product_price_brutto"' | sed 's/^.*content="\([0-9.]*\)".*/\1/'`
     if [ -z "$NAME" -o -z "$PRICE" ]; then
         return 2
     fi
 
-    QTY=$(cat $FILE | grep 'Dostępność: <b>' | sed 's/^Dostępność:\s<b>\(.*\)\sszt\.\s\?\([^<]*\)<\/b>/\1/')
+    QTY=`cat $FILE | grep 'Dostępność: <b>' | sed 's/^Dostępność:\s<b>\(.*\)\sszt\.\s\?\([^<]*\)<\/b>/\1/'`
     if [ -z "$QTY" ]; then
         QTY=0
     fi
