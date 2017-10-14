@@ -143,7 +143,7 @@ fetch_page () {
     if [ -z "$1" -o -z "$2" ]; then
         return 1
     fi
-    curl -sfo $2 $1
+    curl -sfLo $2 $1
     if [ $? -ne 0 ]; then
         return 2
     fi
