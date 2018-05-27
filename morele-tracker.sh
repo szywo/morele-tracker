@@ -167,7 +167,7 @@ parse_page () {
         return 2
     fi
 
-    QTY=`cat $FILE | grep ' szt.</b>' | sed 's/\(tylko\s\)\?<b>\([0-9]*\)\sszt\.<\/b>/\2/'`
+    QTY=`cat $FILE | grep ' szt.</b>' | sed 's/^\(tylko\s\)\?<b>\([0-9]*\)\sszt\.<\/b>$/\2/'`
     if [ -z "$QTY" ]; then
         QTY=0
     fi
